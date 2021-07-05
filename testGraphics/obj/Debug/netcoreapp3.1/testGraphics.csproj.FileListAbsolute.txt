@@ -1,0 +1,15 @@
+C:\Users\sgola\source\repos\testGraphics\testGraphics\bin\Debug\netcoreapp3.1\testGraphics.exe
+C:\Users\sgola\source\repos\testGraphics\testGraphics\bin\Debug\netcoreapp3.1\testGraphics.deps.json
+C:\Users\sgola\source\repos\testGraphics\testGraphics\bin\Debug\netcoreapp3.1\testGraphics.runtimeconfig.json
+C:\Users\sgola\source\repos\testGraphics\testGraphics\bin\Debug\netcoreapp3.1\testGraphics.runtimeconfig.dev.json
+C:\Users\sgola\source\repos\testGraphics\testGraphics\bin\Debug\netcoreapp3.1\testGraphics.dll
+C:\Users\sgola\source\repos\testGraphics\testGraphics\bin\Debug\netcoreapp3.1\testGraphics.pdb
+C:\Users\sgola\source\repos\testGraphics\testGraphics\obj\Debug\netcoreapp3.1\testGraphics.csproj.AssemblyReference.cache
+C:\Users\sgola\source\repos\testGraphics\testGraphics\obj\Debug\netcoreapp3.1\testGraphics.Form1.resources
+C:\Users\sgola\source\repos\testGraphics\testGraphics\obj\Debug\netcoreapp3.1\testGraphics.csproj.GenerateResource.cache
+C:\Users\sgola\source\repos\testGraphics\testGraphics\obj\Debug\netcoreapp3.1\testGraphics.AssemblyInfoInputs.cache
+C:\Users\sgola\source\repos\testGraphics\testGraphics\obj\Debug\netcoreapp3.1\testGraphics.AssemblyInfo.cs
+C:\Users\sgola\source\repos\testGraphics\testGraphics\obj\Debug\netcoreapp3.1\testGraphics.csproj.CoreCompileInputs.cache
+C:\Users\sgola\source\repos\testGraphics\testGraphics\obj\Debug\netcoreapp3.1\testGraphics.dll
+C:\Users\sgola\source\repos\testGraphics\testGraphics\obj\Debug\netcoreapp3.1\testGraphics.pdb
+C:\Users\sgola\source\repos\testGraphics\testGraphics\obj\Debug\netcoreapp3.1\testGraphics.genruntimeconfig.cache
