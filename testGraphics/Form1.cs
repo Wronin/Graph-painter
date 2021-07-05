@@ -19,6 +19,9 @@ namespace testGraphics
         private int offsetY = 0;
         private Point currentPoint;
         private int numberOfPoint = 99999;
+        private bool isClicked = false;
+        private int deltaX = 0;
+        private int deltaY = 0;
         Bitmap bitmap;
         Graphics graphics;
 
@@ -92,8 +95,8 @@ namespace testGraphics
             }
 
             DataTableGrid.DataSource = table;
-            DataTableGrid.Columns[0].Width = 60;
-            DataTableGrid.Columns[1].Width = 60;
+            DataTableGrid.Columns[0].Width = 50;
+            DataTableGrid.Columns[1].Width = 50;
         }
 
         private void DrawGraph_Click(object sender, EventArgs e)
@@ -125,7 +128,7 @@ namespace testGraphics
 
             Pen MainGraphPen = new Pen(Color.Red, 3);
             Pen bPen = new Pen(Color.Blue, 5);
-            //Brush brush = new Brush(Color.White);
+            SolidBrush blueBrush = new SolidBrush(Color.Blue);
 
 
             graphPoints.Clear();
@@ -153,11 +156,16 @@ namespace testGraphics
                 if (points[i].X != 0 && points[i].Y != 0 && points[i + 1].X != 0 && points[i + 1].Y != 0)
                     graphics.DrawLine(MainGraphPen, points[i].X, points[i].Y, points[i + 1].X, points[i + 1].Y);
             }
-            
+
+            rectangles.Clear();
             for (int i = 0; i < points.Length; i++)
             {
                 if (points[i].X != 0 && points[i].Y != 0)
-                    graphics.DrawEllipse(bPen, points[i].X, points[i].Y, 1, 1);
+                {
+                    rectangles.Add(new Rectangle(points[i].X - 3, points[i].Y - 3, 6, 6));
+                    graphics.FillRectangle(blueBrush, rectangles[i]);
+                }
+
             }
             pictureBox1.Image = bitmap;
         }
@@ -321,36 +329,38 @@ namespace testGraphics
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            for (int i = 0; i < graphPoints.Count; i++)
+            for (int i = 0; i < rectangles.Count; i++)
             {
-                if (points[i].X == e.X && points[i].Y == e.Y)
-                {
-                    currentPoint = new Point(points[i].X, points[i].Y);
-                    numberOfPoint = i;
-                    break;
-                }
+                if ((e.X < rectangles[i].X + rectangles[i].Width) && (e.X > rectangles[i].X))
+                    if ((e.Y < rectangles[i].Y + rectangles[i].Height) && (e.Y > rectangles[i].Y))
+                    {
+                        isClicked = true;
+                        numberOfPoint = i;
+                        break;
+                    }
 
             }
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (numberOfPoint != 99999)
+            if (isClicked)
             {
-                currentPoint = new Point(e.X, e.Y);
+                rectangles[numberOfPoint] = new Rectangle(e.X - deltaX - 3, e.Y - deltaY - 3, 6, 6);
             }
             Coordinates.Text = e.X + " ;" + e.Y;
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (numberOfPoint != 99999)
+            if (isClicked)
             {
                 graphPoints[numberOfPoint] = new GraphPoint((int)Math.Round((double)(e.X - (pictureBox1.Width / 2)) / GetSize()), (int)Math.Round((double)((pictureBox1.Height / 2) - e.Y) / GetSize()));
                 DataTableGrid[0, numberOfPoint].Value = graphPoints[numberOfPoint].X;
                 DataTableGrid[1, numberOfPoint].Value = graphPoints[numberOfPoint].Y;
-                points[numberOfPoint] = new Point((int)currentPoint.X, (int)currentPoint.Y);
+                points[numberOfPoint] = new Point(currentPoint.X, currentPoint.Y);
                 numberOfPoint = 99999;
+                isClicked = false;
             }
         }
 
