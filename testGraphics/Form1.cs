@@ -18,7 +18,7 @@ namespace testGraphics
         private int offsetX = 0;
         private int offsetY = 0;
         private Point currentPoint;
-        private int numberOfPoint;
+        private int numberOfPoint = 99999;
         Bitmap bitmap;
         Graphics graphics;
 
@@ -39,6 +39,7 @@ namespace testGraphics
             }
         }
 
+        List<Rectangle> rectangles = new List<Rectangle>();
         List<GraphPoint> graphPoints = new List<GraphPoint>();
         Point[] points;
 
@@ -124,6 +125,7 @@ namespace testGraphics
 
             Pen MainGraphPen = new Pen(Color.Red, 3);
             Pen bPen = new Pen(Color.Blue, 5);
+            //Brush brush = new Brush(Color.White);
 
 
             graphPoints.Clear();
@@ -150,10 +152,8 @@ namespace testGraphics
             {
                 if (points[i].X != 0 && points[i].Y != 0 && points[i + 1].X != 0 && points[i + 1].Y != 0)
                     graphics.DrawLine(MainGraphPen, points[i].X, points[i].Y, points[i + 1].X, points[i + 1].Y);
-
             }
-
-
+            
             for (int i = 0; i < points.Length; i++)
             {
                 if (points[i].X != 0 && points[i].Y != 0)
@@ -323,10 +323,11 @@ namespace testGraphics
         {
             for (int i = 0; i < graphPoints.Count; i++)
             {
-                if (points[i].X == Convert.ToInt32(e.X) && points[i].Y == Convert.ToInt32(e.Y))
+                if (points[i].X == e.X && points[i].Y == e.Y)
                 {
                     currentPoint = new Point(points[i].X, points[i].Y);
                     numberOfPoint = i;
+                    break;
                 }
 
             }
@@ -334,20 +335,30 @@ namespace testGraphics
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (currentPoint != null)
+            if (numberOfPoint != 99999)
             {
-                Pen bPen = new Pen(Color.Blue, 5);
-                graphics.DrawEllipse(bPen, e.X, e.Y, 1, 1);
+                currentPoint = new Point(e.X, e.Y);
             }
-
             Coordinates.Text = e.X + " ;" + e.Y;
         }
+
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (currentPoint != null)
+            if (numberOfPoint != 99999)
             {
-                points[numberOfPoint] = new Point(currentPoint.X, currentPoint.Y);
+                graphPoints[numberOfPoint] = new GraphPoint((int)Math.Round((double)(e.X - (pictureBox1.Width / 2)) / GetSize()), (int)Math.Round((double)((pictureBox1.Height / 2) - e.Y) / GetSize()));
+                DataTableGrid[0, numberOfPoint].Value = graphPoints[numberOfPoint].X;
+                DataTableGrid[1, numberOfPoint].Value = graphPoints[numberOfPoint].Y;
+                points[numberOfPoint] = new Point((int)currentPoint.X, (int)currentPoint.Y);
+                numberOfPoint = 99999;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Coordinates.Text = graphPoints[3].X + " " + graphPoints[3].Y + " ;" + points[3].X + " " + points[3].Y;
+        }
+
+    
     }
 }

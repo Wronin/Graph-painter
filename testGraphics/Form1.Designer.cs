@@ -52,6 +52,7 @@ namespace testGraphics
             this.LoadGraphToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.Coordinates = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataTableGrid)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -260,11 +261,22 @@ namespace testGraphics
             this.Coordinates.Size = new System.Drawing.Size(0, 15);
             this.Coordinates.TabIndex = 25;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(536, 428);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 26;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(797, 467);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.Coordinates);
             this.Controls.Add(this.ButtonDelete);
             this.Controls.Add(this.ButtonRight);
@@ -322,6 +334,7 @@ namespace testGraphics
         private System.Windows.Forms.ToolStripMenuItem LoadGraphToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Label Coordinates;
+        private System.Windows.Forms.Button button1;
     }
 }
 
